@@ -1,0 +1,391 @@
+/* ========================================================================== */
+/* custom.css — Maja Lampa Weaving */											
+/* Purpose: page-specific layout, galleries, type tweaks, buttons, and footer */
+/* Notes: designed to layer over HTML5 UP "Phantom" main.css cleanly */
+/* ========================================================================== */
+
+
+/* ========== 0) TYPOGRAPHY BASE (fonts + global type) ========================= */
+
+/* Self-hosted font imports */
+@font-face {
+	font-family: 'General Sans';
+	src: url('../webfonts/GeneralSans-Semibold.woff2') format('woff2'),
+		 url('../webfonts/GeneralSans-Semibold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Gambetta';
+	src: url('../webfonts/Gambetta-Regular.woff2') format('woff2'),
+		 url('../webfonts/Gambetta-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Maja Lampa';
+	src: url('../webfonts/majalampaweaving-regular-webfont.woff2') format('woff2'),
+		 url('../webfonts/majalampaweaving-regular-webfont.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Font variables for easy global use */
+:root {
+	--font-display: 'General Sans', sans-serif;
+	--font-body: 'Gambetta', serif;
+}
+
+/* Global font assignments */
+body,
+input,
+select,
+textarea {
+	font-family: var(--font-body);
+	font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6,
+header h1, header h2,
+.subtitle, .title {
+	font-family: var(--font-display);
+	font-weight: 600;
+	letter-spacing: 0.01em;
+	text-transform: none;
+	margin-bottom: 2rem;
+	margin-top: 3rem;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 3 rem;
+}
+
+img {
+	margin-bottom: 3rem;
+}
+
+/* Center home hero title */
+.home-hero-title {
+	text-align: center;
+	margin-bottom: 10rem;
+}
+
+/* === Buttons and navigation should use sans-serif === */
+button,
+.button,
+input[type="submit"],
+input[type="button"],
+nav,
+ul.actions a {
+	font-family: var(--font-display);	/* force General Sans */
+	font-weight: 600;					/* match other UI elements */
+}
+
+/* === Button typography overrides === */
+button,
+.button,
+input[type="submit"],
+input[type="button"],
+ul.actions a {
+	font-family: var(--font-display);	/* use General Sans */
+	letter-spacing: 0.25em;				/* override wide spacing from main.css */
+}
+
+
+/* ========== 1) SPLIT LAYOUT (project pages) ================================= */
+
+/* Grid wrapper for the two-pane layout (left media, right details) */
+.split {																			/* start .split rules */
+	display: grid;																	/* establish grid formatting context */
+	grid-template-columns: 0.6fr 0.4fr;												/* define 60/40 column split */
+	gap: 2em;																		/* spacing between columns */
+	min-height: 100vh;																/* ensure at least viewport height */
+}																					/* end .split */
+
+/* Prevent overflow from long children inside the grid cells */
+.split > * {																		/* target direct children */
+	min-width: 0;																	/* allow flex/grid children to shrink without overflow */
+}																					/* end child rule */
+
+
+/* ========== 2) LEFT COLUMN: MASONRY / MEDIA ================================= */
+
+/* Create a lightweight Masonry effect via CSS columns */
+.split .left {																		/* start left column */
+	column-width: 260px;																/* suggest base column width for auto-fit columns */
+	column-gap: 1em;																	/* horizontal gutter between columns */
+}																					/* end left column */
+
+/* Keep each media block intact inside a column */
+.split .left .image.fit {															/* media wrappers */
+	break-inside: avoid;																/* avoid breaking items across columns */
+	-webkit-column-break-inside: avoid;												/* vendor prefix for WebKit */
+	-moz-column-break-inside: avoid;													/* vendor prefix for Firefox */
+	margin: 0 0 1em;																	/* vertical spacing between stacked items */
+}																					/* end media wrapper rule */
+
+/* Make videos behave like responsive images inside the grid */
+.split .left .image.fit video {														/* video elements */
+	display: block;																	/* remove inline whitespace gaps */
+	width: 100%;																		/* scale to container width */
+	height: auto;																		/* preserve aspect ratio */
+}																					/* end video rule */
+
+/* ========== 3) RIGHT COLUMN: STICKY DETAILS ================================= */
+
+/* Keep the details panel in view while scrolling the media column */
+.split .right {																		/* start right column */
+	position: sticky;																	/* enable sticky positioning relative to viewport */
+	top: 2rem;																		/* space from top edge when stuck */
+	align-self: start;																/* begin sticking at start of grid area */
+}																					/* end right column */
+
+/* ============ Stack masonry grid vertically on narrow viewports ============*/
+@media screen and (max-width: 736px) {												/* small-phone breakpoint */
+	.split {																		
+		display: flex;
+		flex-direction: column;																																	/* ensure at least viewport height */
+	}
+
+	.scroll-container {
+		display: flex;
+		overflow-x: auto;
+	}
+
+	.scroll-container .image.fit {
+		flex: 0 0 85%;
+		aspect-ratio: 1 / 1;
+		overflow: hidden;
+	}
+
+	.scroll-container .image.fit img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+}
+
+/* ========== 5) TYPE & INLINE IMAGE TWEAKS =================================== */
+
+/* Normalize body-scale for paragraphs, list items, and subtitles */
+p,																					/* paragraphs */
+li,																					/* list items */
+.subtitle {																			/* custom subtitle class */
+	font-size: 1rem;																	/* set consistent body text size */
+	line-height: 1.65;																/* comfortable reading line height */
+}																					/* end base text sizing */
+
+/* Keep form control text aligned with body scale */
+input,																				/* single-line inputs */
+select,																				/* select dropdowns */
+textarea {																			/* multi-line inputs */
+	font-size: 1rem;																	/* match body text size */
+}																					/* end form control sizing */
+
+/* Give subtitles a subtle emphasis */
+.subtitle {																			/* subtitle block */
+	font-style: italic;																/* apply italics for tone contrast */
+}																					/* end subtitle style */
+
+/* Prevent floated images from colliding with headings below */
+#main .inner section h2,															/* H2 in content area */
+#main .inner section h3 {															/* H3 in content area */
+	clear: both;																	/* clear floats from left/right images */
+}																					/* end heading clear */
+
+/* Size inline left/right floats relative to text column */
+.image.left,																		/* floated-left image wrapper */
+.image.right {																		/* floated-right image wrapper */
+	width: clamp(200px, 25%, 260px);												/* fluid width with min/max bounds */
+}																					/* end float wrappers */
+
+/* Make floated image contents fill their wrapper cleanly */
+.image.left img,																	/* image inside left float */
+.image.right img {																	/* image inside right float */
+	width: 100%;																		/* fill wrapper width */
+	height: auto;																		/* maintain aspect ratio */
+	display: block;																	/* remove inline baseline gap */
+}																					/* end floated image rules */
+
+
+/* ========== 6) BUTTON GROUP (right column actions) ========================== */
+
+/* Layout for the block with “Sold Out / Free Pattern / Read…” */
+.button-group {																		/* wrapper element */
+	display: flex;																	/* use flexbox layout */
+	flex-direction: column;															/* stack children vertically */
+	align-items: flex-start;														/* left-align items for clean rag */
+	gap: 1.2em;																		/* space between rows */
+	margin-bottom: 2em;																/* add gap after button group */
+}																					/* end .button-group */
+
+/* Horizontal layout for the actions row itself */
+.button-group .actions {															/* ul.actions inside group */
+	display: flex;																	/* arrange items in a row */
+	gap: 1em;																		/* spacing between buttons */
+	margin: 0;																		/* remove default list margin */
+	padding: 0;																		/* remove default list padding */
+	list-style: none;																/* remove bullets */
+}																					/* end actions row */
+
+/* Remove theme’s left padding that causes indents on li */
+.button-group .actions li {															/* list items in actions */
+	padding-left: 0;																	/* cancel theme padding */
+	margin-left: 0;																	/* ensure no residual margin */
+}																					/* end li reset */
+
+/* Stack .actions buttons vertically on narrow viewports */
+@media screen and (max-width: 736px) {												/* small-phone breakpoint */
+	ul.actions:not(.fixed) {														/* any actions list not fixed */
+		flex-direction: column;														/* stack buttons vertically */
+		margin-left: 0;																/* remove theme negative margin */
+		width: 100%;																	/* let group fill container */
+	}																				/* end stacked actions */
+}																					/* end breakpoint 736px */
+
+
+/* ========== 7) FOOTER LAYOUT & LINKS ======================================== */
+
+/* Convert footer inner wrapper to a tidy vertical stack */
+#footer > .inner {																	/* inner container of footer */
+	display: flex;																	/* enable flex layout */
+	flex-direction: column;															/* stack children vertically */
+	align-items: center;															/* center items horizontally */
+	text-align: center;																/* center text for symmetry */
+}																					/* end footer inner */
+
+/* Space between content and footer */
+#footer {
+	margin-top: clamp(8rem, 8vw, 8rem);
+}	
+
+/* Give the Substack iframe breathing room before the footer nav */
+#footer .footer-subscribe iframe {
+	display: block;             /* prevents inline weirdness */
+	margin: 0 auto 10rem auto; /* centers + adds space underneath */
+}
+
+/* Space between nav and copyright */
+#footer .footer-nav {																/* nav list container */
+	margin-top: 5 rem;
+	margin-bottom: 5rem;															/* medium gap before copyright */
+}																					/* end nav spacing */
+
+/* Shared layout for footer nav list and copyright line */
+#footer .footer-nav ul,																/* unordered nav list */
+#footer .copyright {																/* copyright list */
+	display: flex;																	/* arrange items in a row */
+	flex-wrap: wrap;																/* wrap onto new lines on small screens */
+	justify-content: center;														/* center the row of links */
+	gap: 1rem 1.5rem;																/* row/column spacing between items */
+	list-style: none;																/* remove bullets from lists */
+}																					/* end shared list layout */
+
+/* Make footer links look like your minimal brand, not underlined */
+#footer .footer-nav a {																/* links inside footer nav */
+	text-decoration: none;															/* remove default underline */
+	border: none;																	/* remove Phantom dotted border effect */
+}																					/* end footer link style */
+
+
+/* ========== 8) HOMEPAGE TILES (overlay + hover reveal) ====================== */
+
+/* Remove the coloured and “X” overlays from the original theme */
+.tiles article > .image:after {														/* diagonal X overlay */
+	content: none !important;														/* remove pseudo-elements entirely */
+	background: none !important;													/* clear any background or tint */
+}																					/* end overlay removal */
+
+/* Dark grey overlay on hover (uses :before) */
+.tiles article > .image:before {
+	content: '' !important;
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: #617D54 !important;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.tiles article:hover > .image:before {
+	opacity: 1;
+}
+
+/* Make homepage tiles square */
+.tiles article > .image {
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+}
+
+/* Crop images to fill the square */
+.tiles article > .image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Hide tile titles until hover (match Phantom behaviour) */
+.tiles article h2 {
+	opacity: 0;
+}
+
+/* Reveal title on hover */
+.tiles article:hover h2 {
+	opacity: 1;
+}
+
+.tiles article h2 {
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.tiles article:hover h2 {
+	opacity: 1;
+}
+
+
+
+/* Image spans full width of .inner */
+.image.full img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* ======= change full page text width ========= */
+
+.text-width {
+	max-width: 42rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* ========== 1) 50 / 50 COLUMN LAYOUT ================================= */
+
+/* Grid wrapper for the two-pane layout (left media, right details) */
+.column {																			/* start .split rules */
+	display: grid;																	/* establish grid formatting context */
+	grid-template-columns: 0.5fr 0.5fr;												/* define 60/40 column split */
+	gap: 2em;																		/* spacing between columns */
+	min-height: 100vh;																/* ensure at least viewport height */
+}																					/* end .split */																			/* end child rule */
+
+
+/* ============ Stack column grid vertically on narrow viewports ============*/
+@media screen and (max-width: 736px) {												/* small-phone breakpoint */
+	.column {																		
+		display: flex;
+		flex-direction: column;																																	/* ensure at least viewport height */
+	}
+
+}
