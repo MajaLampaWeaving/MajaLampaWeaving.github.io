@@ -1,30 +1,50 @@
-Phantom by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+Maja Lampa Weaving Website
+==========================
+
+A small static website for Maja Lampa Weaving.
+
+The site is built with plain HTML and CSS.
 
 
-This is Phantom, a simple design built around a grid of large, colorful, semi-interactive
-image tiles (of which you can have as many or as few as you like). Makes use of some
-SVG and animation techniques I've been experimenting with on that other project of mine
-you may have heard about (https://carrd.co), and includes a handy generic page for whatever.
+Project structure
+-----------------
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+Core pages
 
-(* = not included)
+- index.html
+- about.html
+- project pages (one HTML file per project)
+- elements.html (style guide for reference)
 
-AJ
-aj@lkn.io | @ajlkn
+Stylesheets
+
+- style.css
+- buttons.css
+
+Assets
+
+- images/
+- GeneralSans-Semibold.woff2
+- GeneralSans-Semibold.woff
+- Gambetta-Regular.woff2
+- Gambetta-Regular.woff
 
 
-Credits:
+Acknowledgements
+----------------
 
-	Demo Images:
-		Unsplash (unsplash.com)
+The earliest prototype of this website was built using the Phantom template by HTML5 UP.
 
-	Icons:
-		Font Awesome (fontawesome.io)
+The current website has since been redesigned and rewritten as a custom static site. None of the original Phantom HTML structure, CSS, JavaScript, Sass, or supporting libraries remain in use.
 
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+Thanks to AJ (HTML5 UP) for the original inspiration.
+
+
+Copyright
+---------
+
+Unless otherwise noted, all photographs, weaving drafts, project descriptions, written content, and website design are © Maja Lampa.
+
+The bundled webfonts remain subject to their respective font licenses.
+
+External services linked from the site (including Substack, Etsy, Letterbird, and Do Every Day) remain subject to their own terms of service.

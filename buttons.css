@@ -1,0 +1,115 @@
+/* Button utilities inspired by Phantom, pared back for this site. */
+.button,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  appearance: none;
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--green, #617d54);
+  border-radius: 4px;
+  color: var(--green, #617d54);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-family: var(--font-display, inherit);
+  font-size: 0.78rem;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  min-height: 2.75rem;
+  padding: 0.85rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.button:visited {
+  color: var(--green, #617d54);
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  background: var(--green, #617d54);
+  border-color: var(--green, #617d54);
+  color: var(--paper, #fff);
+}
+
+.button.primary,
+button.primary,
+input[type="submit"].primary,
+input[type="button"].primary,
+input[type="reset"].primary {
+  background: var(--green, #617d54);
+  border-color: var(--green, #617d54);
+  color: var(--paper, #fff);
+}
+
+.button.primary:visited {
+  color: var(--paper, #fff);
+}
+
+.button.primary:hover,
+button.primary:hover,
+input[type="submit"].primary:hover,
+input[type="button"].primary:hover,
+input[type="reset"].primary:hover {
+  background: transparent;
+  color: var(--green, #617d54);
+}
+
+.button.secondary {
+  background: transparent;
+  border-color: var(--green, #617d54);
+  color: var(--green, #617d54);
+}
+
+.button.tertiary {
+  border-color: transparent;
+  color: inherit;
+  padding-inline: 0;
+}
+
+.button.tertiary:hover {
+  background: transparent;
+  border-color: transparent;
+  color: var(--green, #617d54);
+}
+
+.button.small {
+  font-size: 0.7rem;
+  min-height: 2.25rem;
+  padding: 0.65rem 0.9rem;
+}
+
+.button.fit {
+  width: 100%;
+}
+
+.button.disabled,
+.button[aria-disabled="true"],
+button:disabled,
+input[type="submit"]:disabled,
+input[type="button"]:disabled,
+input[type="reset"]:disabled {
+  background: transparent;
+  border-color: var(--line, #d8d2c7);
+  color: inherit;
+  cursor: default;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.project-actions {
+  align-items: flex-start;
+}
