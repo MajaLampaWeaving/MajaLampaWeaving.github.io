@@ -57,10 +57,7 @@ a:hover {
   color: var(--green);
 }
 
-.site-nav a.active {
-  color: var(--green);
-}
-
+.site-nav a.active,
 .site-nav a.active:hover {
   color: var(--green);
 }
@@ -159,16 +156,53 @@ main,
   gap: 1.5rem;
 }
 
+.work-card a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
 .work-card img {
   aspect-ratio: 1 / 1;
   width: 100%;
   object-fit: cover;
-  margin-bottom: 1rem;
+  margin: 0;
+}
+
+.work-card a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--green);
+  opacity: 0;
+  transition: opacity 180ms ease;
 }
 
 .work-card h3 {
-  margin: 0 0 0.25rem;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1rem;
+  color: var(--cream);
   font-size: 1.4rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-card a:hover::after,
+  .work-card a:focus-visible::after {
+    opacity: 0.72;
+  }
+
+  .work-card a:hover h3,
+  .work-card a:focus-visible h3 {
+    opacity: 1;
+  }
 }
 
 .work-card p {
@@ -259,53 +293,6 @@ main,
   opacity: 0.75;
 }
 
-@media (max-width: 800px) {
-  body {
-    font-size: 17px;
-  }
-
-  .site-header {
-    padding: 1.5rem 0;
-  }
-
-  .site-title,
-  .desktop-only {
-    display: none;
-  }
-
-  .mobile-only {
-    display: inline;
-  }
-
-  .site-nav {
-    margin-left: auto;
-    justify-content: flex-end;
-    gap: 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .hero {
-    padding: 3rem 0 5rem;
-  }
-
-  .page-hero {
-    padding: 3rem 0;
-  }
-
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-hero-image {
-    margin-bottom: 3rem;
-  }
-
-  .about-hero-image img {
-    height: 75vh;
-    object-position: center;
-  }
-}
-
 .project-page {
   padding-bottom: 7rem;
 }
@@ -384,9 +371,55 @@ main,
 }
 
 @media (max-width: 800px) {
+  body {
+    font-size: 17px;
+  }
+
+  .site-header {
+    padding: 1.5rem 0;
+  }
+
+  .site-title,
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline;
+  }
+
+  .site-nav {
+    margin-left: auto;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 3rem 0 5rem;
+  }
+
+  .page-hero {
+    padding: 3rem 0;
+  }
+
+  .work-grid,
   .project-intro,
   .project-details {
     grid-template-columns: 1fr;
+  }
+
+  .work-card h3 {
+    display: none;
+  }
+
+  .about-hero-image {
+    margin-bottom: 3rem;
+  }
+
+  .about-hero-image img {
+    height: 75vh;
+    object-position: center;
   }
 
   .project-gallery {
